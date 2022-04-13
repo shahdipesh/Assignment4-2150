@@ -1,7 +1,9 @@
 let Dictionary = require("./Dictionary");
 let StringHash = require("./StringHash");
 let Node = require("./Node");
+let Trees = require("./Trees");
 const IntHash = require("./IntHash");
+
 
 class Encoder{
     constructor(filename){
@@ -15,16 +17,21 @@ class Encoder{
         let frequencyTable = new Dictionary(10); 
         let totalChars =this.getTotalFrequency(frequencyTable,content);
         this.convertFrequencyToWeight(frequencyTable,totalChars);
-
-
-        console.log(totalChars);
+        let tree = new Trees(frequencyTable);
+        let trees = tree.generateTrees(frequencyTable); //array of trees
         
     }
 
     storeFrequency(frequency,content){
         for(let i = 0; i < content.length; i++){
             let char = content[i];
-            let hash = new StringHash(char);
+            let hash;
+            if(parseInt(char)){
+                hash = new IntHash(char);
+            }
+            else{
+                hash = new StringHash(char);
+            }
             if(frequency.contains(hash)){
                 frequency.search(hash).value+=1;
             }
@@ -62,3 +69,8 @@ class Encoder{
 
 let encode = new Encoder("./README.txt");
 encode.encode();
+
+
+
+
+module.exports = Encoder;
