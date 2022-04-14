@@ -41,10 +41,10 @@ class HuffManTrees{
             }
             let leftmostNode = leftmost(this._root);
             let leftmostNode2 = leftmost(tree._root);
-            if(leftmostNode.val.str > leftmostNode2.val.str){
+            if(leftmostNode.val.data > leftmostNode2.val.data){
                 return 1;
             }
-            else if(leftmostNode.val.str < leftmostNode2.val.str){
+            else if(leftmostNode.val.data < leftmostNode2.val.data){
                 return -1;
             }
             else{
@@ -59,10 +59,10 @@ class HuffManTrees{
          let search = (node) => {
              let data;
              if(node.val && node.val instanceof StringHash){
-                    data = node.val.str;
+                    data = node.val.data;
              }
              else if(node.val instanceof IntHash){
-                    data = node.val.val;
+                    data = node.val.data;
                 }
             if(data === char){
                 return node;
@@ -136,7 +136,7 @@ class HuffManTrees{
     
 }
 
-// let str = "TOBERNHAIS"
+// let data = "TOBERNHAIS"
 // let vals = [0.21428571428571427,0.14285714285714285,0.10714285714285714,0.10714285714285714,0.03571428571428571,0.10714285714285714,0.07142857142857142,0.14285714285714285,0.03571428571428571,0.03571428571428571];
 // let key1 = new StringHash('T');
 // let key2 = new StringHash('O');

@@ -1,9 +1,9 @@
 let Hashable = require('./Hashable');
 class StringHash extends Hashable{
 
-    constructor(str){
+    constructor(data){
         super();
-        this._str = str;
+        this._str = data;
     }
     // hashVal function is the value of the string
     hashVal(){
@@ -17,10 +17,10 @@ class StringHash extends Hashable{
     }
     
     equals(other){
-        return this._str.localeCompare(other.str) === 0;
+        return this._str.localeCompare(other.data) === 0;
     }
 
-    get str(){
+    get data(){
         return this._str;
     }
     

@@ -11,7 +11,6 @@ class Hashable{
         throw new Error("Abstract method equals not implemented");
     }
 
- 
 }
 
 module.exports = Hashable;

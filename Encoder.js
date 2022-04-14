@@ -38,14 +38,14 @@ class Encoder{
     
     writeToFile(trees,root){
         let fs = require('fs');
-        let file = fs.createWriteStream("./output.txt");
+        let file = fs.createWriteStream("./output.huff");
         for(let i=0; i<trees.length; i++){
             let valueToWrite;
             if(trees[i]._value instanceof StringHash){
-                valueToWrite = trees[i].value.str;
+                valueToWrite = trees[i].value.data;
             }
             else{
-                valueToWrite = trees[i].value.num;
+                valueToWrite = trees[i].value.data;
             }
    
              file.write(`${valueToWrite} ${root.find(valueToWrite).path}\n`);
@@ -63,6 +63,7 @@ class Encoder{
 
 
     storeFrequency(frequency,content){
+        console.log(content)
         for(let i = 0; i < content.length; i++){
             let char = content[i];
             let hash;
@@ -84,7 +85,7 @@ class Encoder{
     getTotalFrequency(frequencyTable,content){
         this.storeFrequency(frequencyTable,content);
         let total = 0;
-        for(let i = 0; i < frequencyTable.size; i++){
+        for(let i = 0; i < frequencyTable.length; i++){
             let current = frequencyTable.hashTable[i].top;
             while(current != null){
                 total += current.value;
@@ -95,7 +96,7 @@ class Encoder{
     }
 
     convertFrequencyToWeight(frequencyTable,totalCharacters){
-        for(let i = 0; i < frequencyTable.size; i++){
+        for(let i = 0; i < frequencyTable.length; i++){
             let current = frequencyTable.hashTable[i].top;
             while(current != null){
                current.value = current.value/totalCharacters;

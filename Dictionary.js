@@ -12,6 +12,7 @@ class Dictionary{
             this._hashTable[i] = new LinkedList();
         }
         this._size = 0;
+        this._length=size; //number of array index in Dictionary
     }
     
     put(key, value){
@@ -84,6 +85,10 @@ class Dictionary{
     get size(){
         return this._size;
     }
+
+    get length(){
+        return this._length;
+    }
 }
 
 
@@ -92,8 +97,8 @@ let key2 = new IntHash(2);
 let key3 = new IntHash(2);
 
 
-// let dictionary = new Dictionary(10);
-// dictionary.put(key1, "one");
+let dictionary = new Dictionary(10);
+dictionary.put(key1, "\n");
 // dictionary.put(key2, "two");
 // dictionary.put(key3, "three");
 
