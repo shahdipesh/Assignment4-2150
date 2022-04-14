@@ -16,9 +16,6 @@ class LinkedList{
         this._size++;
     }
 
-    find(key){
-        
-    }
     get top(){
         return this._head;
     }

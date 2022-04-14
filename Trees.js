@@ -16,14 +16,14 @@ class Trees{
                 current = current.next;
             }
         }
-        this.sortTrees();
+        this.sortTrees(this._trees);
         return this._trees;
        
     }
 
     //sort trees by weight
-    sortTrees(){
-        this._trees.sort((a, b) => {
+    sortTrees(trees){
+        trees.sort((a, b) => {
             if(a.weight==b.weight && a.value instanceof StringHash){
                 return a.value.str.localeCompare(b.value.str);
             }

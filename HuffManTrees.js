@@ -41,10 +41,10 @@ class HuffManTrees{
             }
             let leftmostNode = leftmost(this._root);
             let leftmostNode2 = leftmost(tree._root);
-            if(leftmostNode.val > leftmostNode2.val){
+            if(leftmostNode.val.str > leftmostNode2.val.str){
                 return 1;
             }
-            else if(leftmostNode.val < leftmostNode2.val){
+            else if(leftmostNode.val.str < leftmostNode2.val.str){
                 return -1;
             }
             else{
@@ -54,17 +54,26 @@ class HuffManTrees{
     }
 
 
-    search(char){
+    find(char){
        //return the node if it exists 
          let search = (node) => {
-            if(node.val === char){
+             let data;
+             if(node.val && node.val instanceof StringHash){
+                    data = node.val.str;
+             }
+             else if(node.val instanceof IntHash){
+                    data = node.val.val;
+                }
+            if(data === char){
                 return node;
             }
             else if(node.left === null && node.right === null){
                 return null;
             }
             else {
-                return search(node.left)|| search(node.right);
+                let leftSearch = search(node.left);
+                let rightSearch = search(node.right);
+                return leftSearch || rightSearch;
             }
         }
 
