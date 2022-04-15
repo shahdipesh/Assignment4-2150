@@ -51,7 +51,6 @@ class Encoder{
              file.write(`${valueToWrite} ${root.find(valueToWrite).path}\n`);
         
         }
-
     }
 
     //insert trees from array into min_heap
@@ -63,7 +62,6 @@ class Encoder{
 
 
     storeFrequency(frequency,content){
-        console.log(content)
         for(let i = 0; i < content.length; i++){
             let char = content[i];
             let hash;
@@ -107,10 +105,6 @@ class Encoder{
 
     
 }
-
-let encode = new Encoder("./README.txt");
-encode.encode();
-
 
 
 

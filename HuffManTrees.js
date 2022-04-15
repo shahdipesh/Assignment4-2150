@@ -107,11 +107,11 @@ class HuffManTrees{
            return arr;
 
         }
-        
+        let node=search(this._root);
         return {
-            node: search(this._root),
-            //convert path to string
-            path: path(this._root,[]).toString()
+            node,
+            //path returns null means that the node we are searching is leaf so we return 0 if the node was found
+            path: path(this._root,[])?path(this._root,[]).toString():(node)?0:null
         }
     }
 
