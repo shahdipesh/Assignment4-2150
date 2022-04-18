@@ -27,7 +27,6 @@ class Trees{
             if(a.weight==b.weight && a.value instanceof StringHash){
                 return a.value.data.localeCompare(b.value.data);
             }
-
             return a.weight - b.weight;
         });
     }

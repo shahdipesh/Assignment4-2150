@@ -39,12 +39,20 @@ class HuffManTrees{
                     return leftmost(node.left);
                 }
             }
-            let leftmostNode = leftmost(this._root);
-            let leftmostNode2 = leftmost(tree._root);
-            if(leftmostNode.val.data > leftmostNode2.val.data){
+            let rightMost = (node) => {
+                if(node.right === null){
+                    return node;
+                }
+                else{
+                    return rightMost(node.right);
+                }
+            }
+            let rightMost1 = rightMost(this._root);
+            let rightMost2 = rightMost(tree._root);
+            if(rightMost1.val.data > rightMost2.val.data){
                 return 1;
             }
-            else if(leftmostNode.val.data < leftmostNode2.val.data){
+            else if(rightMost1.val.data < rightMost2.val.data){
                 return -1;
             }
             else{
@@ -111,7 +119,8 @@ class HuffManTrees{
         return {
             node,
             //path returns null means that the node we are searching is leaf so we return 0 if the node was found
-            path: path(this._root,[])?path(this._root,[]).toString():(node)?0:null
+            //remove comma from toString to see the path
+            path: path(this._root,[])?path(this._root,[]):(node)?0:null
         }
     }
 
