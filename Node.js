@@ -1,3 +1,11 @@
+// CLASS: Node
+//
+// Author: Dipesh Shah, 7882947
+//
+// REMARKS: This class is used to create a node for the linked list.
+//
+//-----------------------------------------
+
 const Hashable = require("./Hashable");
 class Node{
     constructor(key,value){

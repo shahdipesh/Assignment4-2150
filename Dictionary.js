@@ -1,3 +1,12 @@
+// CLASS: Dictionary
+//
+// Author: Dipesh Shah, 7882947
+//
+// REMARKS: Class to define a dictionary
+//
+//-----------------------------------------
+
+
 const Hashable = require("./Hashable");
 const IntHash = require("./IntHash");
 const StringHash = require("./StringHash");
@@ -14,7 +23,8 @@ class Dictionary{
         this._size = 0;
         this._length=size; //number of array index in Dictionary
     }
-    
+
+    //inserts a key-value pair into the dictionary
     put(key, value){
         if(key instanceof Hashable){
             let hash = key.hashVal();
@@ -33,6 +43,7 @@ class Dictionary{
         }
 }
 
+    //returns the value associated with the key
     get(key){
         //get key from the array
         let index = key.hashVal() % this._hashTable.length;
@@ -40,7 +51,13 @@ class Dictionary{
         let current = list.top;
         //if contains then return the value
         if(this.contains(key)){
-            return current.value;
+           //loop through the linked list to find the key
+           while(current != null){
+               if(current.key.equals(key)){
+                   return current.value;
+               }
+               current = current.next;
+           }
         }
         else{
             return undefined;
@@ -48,6 +65,7 @@ class Dictionary{
        
     }
 
+    //returns true if the dictionary contains the key
     search(key){
         let index = key.hashVal() % this._hashTable.length;
         let list = this._hashTable[index];
@@ -62,6 +80,7 @@ class Dictionary{
        
     }
 
+    //returns true if the dictionary contains the key
     contains(key){
         let index = key.hashVal() % this._hashTable.length;
         let list = this._hashTable[index];
@@ -75,32 +94,27 @@ class Dictionary{
         return false;
     }
 
+    //checks if the dictionary is empty
     isEmpty(){
         return this._size === 0;
     }
+
+    //returns the hash table
     get hashTable(){
         return this._hashTable;
     }
 
+    //returns the size of the dictionary
     get size(){
         return this._size;
     }
 
+    //returns the length of the dictionary
     get length(){
         return this._length;
     }
 }
 
-
-let key1 = new IntHash(1);
-let key2 = new IntHash(2);
-let key3 = new IntHash(2);
-
-
-let dictionary = new Dictionary(10);
-dictionary.put(key1, "\n");
-// dictionary.put(key2, "two");
-// dictionary.put(key3, "three");
 
 
 

@@ -1,3 +1,11 @@
+// CLASS: HuffmanTree
+//
+// Author: Dipesh Shah, 7882947
+//
+// REMARKS: Defines the HuffmanTree class
+//
+//-----------------------------------------
+
 let HuffManNode = require("./HuffManNode");
 let Node = require("./Node");
 let StringHash = require("./StringHash");
@@ -11,6 +19,12 @@ class HuffManTrees{
         this._weight = weight;
     }
 
+    //------------------------------------------------------
+    // combine
+    //
+    // PURPOSE:    Combines two HuffmanTrees into one
+    // PARAMETER:tree
+    //------------------------------------------------------
     combine(tree){
         let newRoot = new HuffManNode(null);
         newRoot.left = this._root;
@@ -22,6 +36,7 @@ class HuffManTrees{
     }
 
 
+    //compareTo method to compare two HuffmanTrees
     compareTo(tree){
         if(this._weight > tree._weight){  //parameter comes first
             return 1;
@@ -30,15 +45,7 @@ class HuffManTrees{
             return -1;
         }
         else{
-            //search for the leftmost node in the tree and compare them
-            let leftmost = (node) => {
-                if(node.left === null){
-                    return node;
-                }
-                else{
-                    return leftmost(node.left);
-                }
-            }
+            //search for the rightmost node in the tree and compare them
             let rightMost = (node) => {
                 if(node.right === null){
                     return node;
@@ -62,6 +69,7 @@ class HuffManTrees{
     }
 
 
+    //find the node with the given value
     find(char){
        //return the node if it exists 
          let search = (node) => {
@@ -116,11 +124,18 @@ class HuffManTrees{
 
         }
         let node=search(this._root);
+         let pathArr = path(this._root,[])?path(this._root,[]):(node)?0:null;
+         let pathString;
+         if(pathArr){
+            pathString = pathArr.join(" ");
+         }
+         else{
+            pathString = null;
+         }
         return {
             node,
             //path returns null means that the node we are searching is leaf so we return 0 if the node was found
-            //remove comma from toString to see the path
-            path: path(this._root,[])?path(this._root,[]):(node)?0:null
+            path: pathString?pathString:0
         }
     }
 
@@ -144,71 +159,6 @@ class HuffManTrees{
     }
     
 }
-
-// let data = "TOBERNHAIS"
-// let vals = [0.21428571428571427,0.14285714285714285,0.10714285714285714,0.10714285714285714,0.03571428571428571,0.10714285714285714,0.07142857142857142,0.14285714285714285,0.03571428571428571,0.03571428571428571];
-// let key1 = new StringHash('T');
-// let key2 = new StringHash('O');
-// let key3 = new StringHash('B');
-// let key4 = new StringHash('E');
-// let key5 = new StringHash('R');
-// let key6 = new StringHash('N');
-// let key7 = new StringHash('H');
-// let key8 = new StringHash('A');
-// let key9 = new StringHash('I');
-// let key10 = new StringHash('S');
-
-// let d = new Dictionary(10);
-// d.put(key1,0.21428571428571427);
-// d.put(key2,0.14285714285714285);
-// d.put(key3,0.10714285714285714);
-// d.put(key4,0.10714285714285714);
-// d.put(key5,0.03571428571428571);
-// d.put(key6,0.10714285714285714);
-// d.put(key7,0.07142857142857142);
-// d.put(key8,0.14285714285714285);
-// d.put(key9,0.03571428571428571);
-// d.put(key10,0.03571428571428571);
-
-// let tree1 = new HuffManTrees('T',0.07142857142857142);
-// let tree2 = new HuffManTrees('O',0.14285714285714285);
-// let tree3 = new HuffManTrees('B',0.10714285714285714);
-// let tree4 = new HuffManTrees('E',0.10714285714285714);
-// let tree5 = new HuffManTrees('R',0.03571428571428571);
-// let tree6 = new HuffManTrees('N',0.10714285714285714);
-// let tree7 = new HuffManTrees('H',0.14285714285714285);
-// let tree8 = new HuffManTrees('A',0.03571428571428571);
-// let tree9 = new HuffManTrees('I',0.03571428571428571);
-// let tree10 = new HuffManTrees('S',0.07142857142857142);
-
-// //merge I and R
-// tree9.combine(tree5); 
-
-// //merge S and H
-// tree10.combine(tree7);
-
-// //merge I and R and B
-// tree9.combine(tree3);
-
-// //Join E and S,H
-// tree4.combine(tree10);
-
-// //Join N and A
-// tree6.combine(tree8);
-
-// //Join O and I,R,B
-// tree2.combine(tree9);
-
-// //Join E,S,H and T
-// tree4.combine(tree1);
-
-// //Join N,A and O,I,R,B
-// tree6.combine(tree2);
-
-// //Join E,S,H,T and N,A,O,I,R,B
-// tree4.combine(tree6);
-
-// console.log("---",tree6.search("R"));
 
 
 module.exports = HuffManTrees;

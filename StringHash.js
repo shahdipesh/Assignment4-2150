@@ -1,3 +1,11 @@
+// CLASS: StringHash
+//
+// Author: Dipesh Shah, 7882947
+//
+// REMARKS: This class is used to hash the string.
+//
+//-----------------------------------------
+
 let Hashable = require('./Hashable');
 class StringHash extends Hashable{
 
@@ -15,7 +23,7 @@ class StringHash extends Hashable{
         }
         return hash;
     }
-    
+    //equals function is used to check if the string is equal to the other string
     equals(other){
         return this._str.localeCompare(other.data) === 0;
     }

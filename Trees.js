@@ -1,3 +1,11 @@
+// CLASS: HuffmanTree
+//
+// Author: Dipesh Shah, 7882947
+//
+// REMARKS: Defines the HuffmanTree class
+//
+//-----------------------------------------
+
 let HuffManTrees = require('./HuffManTrees');
 let StringHash = require('./StringHash');
 

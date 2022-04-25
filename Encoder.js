@@ -1,3 +1,11 @@
+// CLASS: Encoder
+//
+// Author: Dipesh Shah, 7882947
+//
+// REMARKS: Define a class Encoder that reads a file and encodes it into a huffman sequence
+//
+//-----------------------------------------
+
 let Dictionary = require("./Dictionary");
 let StringHash = require("./StringHash");
 let Node = require("./Node");
@@ -12,17 +20,24 @@ class Encoder{
        //open the file passed in as a parameter
         this._path = filename;
     }
-    
+
+
+    //------------------------------------------------------
+    // encode
+    //
+    // PURPOSE:   Encodes the file into huffman sequence
+    //------------------------------------------------------
     encode(){
         let fs = require('fs');
-        let content = fs.readFileSync(`${this._path}`, "utf8");   
-        let frequencyTable = new Dictionary(10); 
-        let minheap = new MinHeap();
-        let totalChars =this.getTotalFrequency(frequencyTable,content);
-        this.convertFrequencyToWeight(frequencyTable,totalChars);
-        let tree = new Trees(frequencyTable);
+        let content = fs.readFileSync(`${this._path}`, "utf8");  //read the file
+        let frequencyTable = new Dictionary(10); //create a dictionary to store the frequency of each character
+        let minheap = new MinHeap(); //create a minheap to store the nodes
+        let totalChars =this.getTotalFrequency(frequencyTable,content);//get the total frequency of each character
+        this.convertFrequencyToWeight(frequencyTable,totalChars);//convert the frequency to weight
+        let tree = new Trees(frequencyTable);//create a tree
         let trees = tree.generateTrees(frequencyTable); //array of trees
-        this.insertTrees(trees,minheap);   
+        this.insertTrees(trees,minheap);   //insert the trees into the minheap
+        //this block takes 2 small trees at a time and combines them into a larger tree and inserts it into the minheap again
         while (minheap.size>1) {
             let tree1 = minheap.remove();
             let tree2 = minheap.remove();
@@ -35,7 +50,8 @@ class Encoder{
        this.writeToFile(trees,minheap.heap[0]);
     }
 
-    
+
+    //writes the path to each character to the output file
     writeToFile(trees,root){
         let fs = require('fs');
         let file = fs.createWriteStream("./output.huff");
@@ -60,7 +76,7 @@ class Encoder{
         }
     }
 
-
+//store the frequency of each character in the frequency table
     storeFrequency(frequency,content){
         for(let i = 0; i < content.length; i++){
             let char = content[i];
@@ -80,6 +96,7 @@ class Encoder{
         }
     }
 
+    //get the total number of characters in the file
     getTotalFrequency(frequencyTable,content){
         this.storeFrequency(frequencyTable,content);
         let total = 0;
@@ -93,6 +110,7 @@ class Encoder{
         return total;
     }
 
+    //convert the frequency to weight
     convertFrequencyToWeight(frequencyTable,totalCharacters){
         for(let i = 0; i < frequencyTable.length; i++){
             let current = frequencyTable.hashTable[i].top;

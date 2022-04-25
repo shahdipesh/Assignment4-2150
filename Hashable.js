@@ -1,3 +1,10 @@
+// CLASS: Hashable
+//
+// Author: Dipesh Shah, 7882947
+//
+// REMARKS: This class is used to force methods to be implemented in the subclasses.
+//
+//-----------------------------------------
 class Hashable{
 
     constructor(){

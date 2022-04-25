@@ -1,3 +1,10 @@
+// CLASS: Minheap
+//
+// Author: Dipesh Shah, 7882947
+//
+// REMARKS: This class implements a minheap.
+//
+//-----------------------------------------
 class MinHeap{
     constructor(){
         this._heap = [];

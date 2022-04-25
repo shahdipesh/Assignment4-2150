@@ -1,4 +1,12 @@
 
+// CLASS: IntHash
+//
+// Author: Dipesh Shah, 7882947
+//
+// REMARKS: This class implements a hash table for integers.
+//
+//-----------------------------------------
+
 let Hashable = require('./Hashable');
 class IntHash extends Hashable{
     constructor(data){

@@ -1,10 +1,19 @@
+// CLASS: LinkedList
+//
+// Author: Dipesh Shah, 7882947
+//
+// REMARKS: This class implements a linked list.
+//
+//-----------------------------------------
+
 let Node = require("./Node")
 class LinkedList{
     constructor(){
         this._head = null;
         this._size = 0;
     }
-    insert(node){
+
+    insert(node){//inserts a node at the top of the list
         if(this.top == null){
             this._head = node;
         }
